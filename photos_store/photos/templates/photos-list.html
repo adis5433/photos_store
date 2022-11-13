@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Photos list</h1>
+
+<table class="table">
+
+    <tr>
+        <th>Title</th>
+        <th>Url</th>
+        <th>Album</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+{% for photo in photos %}
+    <tr>
+
+        <td><a href="{% url 'photos:photo_detail' photo.id %}">{{ photo.title }}</a></td>
+        <td>{{ photo.image }}</td>
+        <td>{{ photo.album }}</td>
+
+        <td><a href="{% url 'photos:update_photo' photo.id %}">
+            <button type="submit" >Update photo</button>
+        </a></td>
+        <td><a href="{% url 'photos:delete_photo' photo.id %}">
+            <button type="submit" >Delete photo</button>
+        </a></td>
+
+    </tr>
+
+
+{% endfor %}
+</table>
+<a href="{% url 'photos:photos_add' %}">
+            <button type="submit" value="Add new photo">Add</button>
+</a>
+
+{% endblock %}
